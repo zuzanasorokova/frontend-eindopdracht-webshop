@@ -1,45 +1,59 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {useForm} from "react-hook-form";
 import axios from "axios";
-import "./Registration.css"
+import "./UserRegistration.css"
 
 
-function Registration() {
+function UserRegistration() {
     const {register, handleSubmit} = useForm();
+    const history = useHistory();
+    const [error, toggleError] = useState(false);
+    const source = axios.CancelToken.source();
+
+    useEffect(() => {
+        return function cleanup(){
+            source.cancel();
+        }
+    },[]);
+
+    async function registerUser(info){
+        toggleError(false)
+        try{
+            const userData = await axios.post("http://localhost:8080/users", {
+                username: info.username,
+                email: info.email,
+                password: info.password,
+                enabled: true,
+            }, {
+                cancelToken: source.token,
+            });
+            console.log(userData.data)
+            sendToNextPage(userData);
+        }catch(e){
+            console.error(e);
+            toggleError(true);
+        }
+    }
+
+    function sendToNextPage(data){
+        console.log(data)
+        history.push("/personinfo")
+    }
+
     return (
         <>
             <div className="outer-container registration-body">
+                {error && <span>Er is iets misgegaan tijdens sturen van data.</span>}
                 <h1 className="registration-title">Registreren</h1>
                 <div className="inner-container">
-                    <form className="registration-form" onSubmit={handleSubmit()}>
+                    <form className="registration-form" onSubmit={handleSubmit(registerUser)}>
                         <label className="label-text" htmlFor="username">Username</label>
                         <input
                             className="input"
                             type="text"
                             id="username"
                             {...register("username")}
-                        />
-                        <label className="label-text" htmlFor="firstname">Naam</label>
-                        <input
-                            className="input"
-                            type="text"
-                            id="firstname"
-                            {...register("firstname")}
-                        />
-                        <label className="label-text" htmlFor="lastname">Achternaam</label>
-                        <input
-                            className="input"
-                            type="text"
-                            id="lastname"
-                            {...register("lastname")}
-                        />
-                        <label className="label-text" htmlFor="address">Adres</label>
-                        <input
-                            className="input"
-                            type="text"
-                            id="address"
-                            {...register("address")}
                         />
                         <label className="label-text" htmlFor="email">E-mail</label>
                         <input
@@ -55,21 +69,15 @@ function Registration() {
                             id="password"
                             {...register("password")}
                         />
-                        <label className="label-text" htmlFor="password-repeat">Wachtwoord herhalen</label>
-                        <input
-                            className="input"
-                            type="password"
-                            id="password-repeat"
-                            {...register("password-repeat")}
-                        />
                         <button type="submit">Register</button>
-                        <label htmlFor=""></label>
+                        <p>Heb je al een account?</p>
+                        <p>Je kunt je <Link to="/login">hier</Link> inloggen.</p>
                     </form>
-                    <p>Heb je al een account? Je kunt je <Link to="/login">hier</Link> inloggen.</p>
+
                 </div>
             </div>
         </>
     );
 }
 
-export default Registration;
+export default UserRegistration;

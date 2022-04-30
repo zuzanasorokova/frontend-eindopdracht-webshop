@@ -21,8 +21,8 @@
 
 .registration-form {
     background-color: #000000;
-    height: 800px;
-    width: 400px;
+    /*height: 400px;*/
+    /*width: 400px;*/
     display: flex;
     flex-flow: column;
     color: #F0D2A5;

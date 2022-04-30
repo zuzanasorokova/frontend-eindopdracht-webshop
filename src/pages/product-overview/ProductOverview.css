@@ -1,0 +1,30 @@
+.product-body{
+    background: #F0D2A5;
+    height: 100%;
+}
+
+.product-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.title{
+    font-size: 75px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #000000;
+
+}
+
+.product-view {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    column-width: 300px;
+    justify-content: center;
+}

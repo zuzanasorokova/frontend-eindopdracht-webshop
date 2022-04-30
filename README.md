@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Handleiding - webapplicatie WEBSHOP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In deze webapplicatie WEBSHOP is mogelijk om  producten te bestellen. De gebruikers kunnen zich registreren en daarna met hun gegevens inloggen. Ingelogde gebruikers kunnen hun eigen profiel bekijken met hun eigen gegevens en bestelgeschiedenis. Er zijn twee rollen aanwezig - customers en admin(productbeheerder). Alleen admin kan producten toevoegen met productformulier die verschijnt nadat de admin is ingelogd. 
 
-## Available Scripts
+## Benodigheden
 
-In the project directory, you can run:
+Om deze applicatie te kunnen implementeren zijn er verschillende benodigheden nodig. Deze dienen van tevoren geïnstalleerd worden. 
 
+#### LET OP!
+Er wordt gebruik gemaakt van eigen backend. Deze heeft eigen benodigheden zoals IDE IntelliJ en PostgreSQL. Handleiding om deze te instaleren is aangeleverd(zie bestand Eindopdracht Backend).
+
+### Os
+Alle benodigheden zijn te downloaden voor elke besturing systeem. Deze applicatie is gemaakt op MacOs en daarom zijn de gebruikte links naar downloads voor MacOs bedoeld.
+
+### IDE
+Om de code te kunnen beordelen is er een IDE nodig. Deze code is geschreven in WebStorm.
+WebStorm is te downloaden via https://www.jetbrains.com/webstorm/download/#section=mac.
+
+1. Kies een installer voor Intel of Apple Silicon en klik op download
+![](src/assets/webstorm download.png)
+
+
+2. Verplaats de icon tussen applicaties folder
+![](src/assets/add WebStorm.png)
+
+
+3. Voor volle features is een licencie nodig maar het is mogelijk om dit ook voor 30 dagen gratis te gebruiken.
+
+
+4. Maak JetBrains account aan op de website van JetBrains.
+
+
+5. Na openen van WebStorm kies WebStorm Ativate en kies Start Trial en druk op Log in to JetBrains Account.
+
+
+![](src/assets/WebStorm Trial.png)
+
+
+6. Log in met JetBrains account op website en click Start Trial button in License dialog om met trial te beginnen.
+![](src/assets/trial.png)
+
+
+7. De IDE is klaar voor gebruik
+
+## Applicatie starten
+
+
+1.Open WebStrom en druk op Open, kies de bestand en dubbleklik erop.
+![](src/assets/file openen.png)
+
+
+2. Eerst moeten de "node_modules" geinstallerd worden. Druk op terminaal en run een commando:
+### `npm install`
+
+
+3. Als dat klaar is, kan de applicatie gestart worden met de commando:
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4. Er opent automatisch een pagina in de browser of open http://localhost.3000 in de browers.
+5. De applicatie runt.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Inloggegevens
 
-### `npm test`
+Er is al een account van admin. Alleen admin is geautoriseerd om een product toe voegen.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### username: admin
 
-### `npm run build`
+### wachtwoord: password
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Tijdens het bouwen van deze applicatie werd een Git gebruikt. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### https://github.com/zuzanasorokova/frontend-eindopdracht-webshop
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

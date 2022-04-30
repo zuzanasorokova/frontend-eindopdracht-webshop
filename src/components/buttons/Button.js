@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Button.css";
 
 const Button = ({claasName, disabled,type, buttonName, buttonValue, clickHandler }) => {
     return (
