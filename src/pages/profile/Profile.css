@@ -1,0 +1,25 @@
+.detail{
+    color: #F0D2A5;
+    background-color: black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.profile-page{
+    background-image: url("../../assets/IZaadjes Normaal.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+h2{
+    text-transform: uppercase;
+}
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}

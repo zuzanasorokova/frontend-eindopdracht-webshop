@@ -5,10 +5,11 @@ import Badge from "@material-ui/core/Badge";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 
-const OrderCounter = ({counter, minusOne, plusOne }) => {
+const OrderCounter = ({counter, minusOne, plusOne, id, idBadge, idCart }) => {
     return (
         <div>
             <Button
+                id={id}
                 claasName="amount-button"
                 disabled={counter <= 0}
                 type="button"
@@ -16,11 +17,12 @@ const OrderCounter = ({counter, minusOne, plusOne }) => {
                 clickHandler={minusOne}
             />
 
-            <Badge overlap="rectangular" className="amount" badgeContent={counter}>
-                <FontAwesomeIcon icon={faShoppingCart} id="icon"/>{" "}
+            <Badge overlap="rectangular" className="amount" badgeContent={counter} id={idBadge}>
+                <FontAwesomeIcon icon={faShoppingCart} className="icon-cart" id={idCart}/>{" "}
             </Badge>
 
             <Button
+                id={id}
                claasName="amount-button"
                disabled={false}
                type="button"

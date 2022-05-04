@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from "react-router-dom";
 import "./Header.css";
 import shoppingCart from "../../assets/shopping-cart.png"
@@ -15,10 +15,11 @@ const Header = ({headerCounter}) => {
 
     const {isAuth, logout} = useContext(AuthContext);
 
+
     return (
         <>
-            <header className="outer-container">
-                <nav className="inner-container">
+            <header className="nav-outer-container">
+                <nav className="nav-inner-container">
                         <ul id="menu-pages">
                             <li>
                                 <Link to="/" className="link">HOME</Link>
@@ -50,14 +51,16 @@ const Header = ({headerCounter}) => {
                             </li>
                         </ul>
                     </nav>
-                    <nav className="menu-icons-container">
-                        <div className="search-bar">
-                                <input type="text" placeholder="Search..."/>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} className="icon search" />
-                        </div>
+                    <nav className="inner container menu-icons-container">
                         {!isAuth ?
                             <>
                                 <ul className="menu-icons">
+                                    <li className="dropdown">
+                                        <button className="dropdown-button"><FontAwesomeIcon icon={faMagnifyingGlass} className="icon"/></button>
+                                        <div className="dropdown-content">
+                                            <input className="search-bar" type="text" placeholder="Search..."/>
+                                        </div>
+                                    </li>
                                     <li className="dropdown">
                                         <p className="dropdown-option"><FontAwesomeIcon icon={faGlobe} className="icon"/></p>
                                         <div className="dropdown-content">
@@ -73,7 +76,7 @@ const Header = ({headerCounter}) => {
                                     <li>
                                         <Link to="/order" className="link">
                                             <Badge overlap="rectangular" className="amount" badgeContent={headerCounter}>
-                                                <FontAwesomeIcon icon={faShoppingCart} id="icon"/>{" "}
+                                                <FontAwesomeIcon icon={faShoppingCart} className="icon-cart"/>{" "}
                                             </Badge>
                                         </Link>
                                     </li>
@@ -83,11 +86,22 @@ const Header = ({headerCounter}) => {
                             <>
                             <ul className="menu-icons">
                                 <li className="dropdown">
-                                    <p className="dropdown-option">🌎</p>
+                                    <button className="dropdown-button"><FontAwesomeIcon icon={faMagnifyingGlass} className="icon"/></button>
+                                    <div className="dropdown-content">
+                                        <input className="search-bar" type="text" placeholder="Search..."/>
+                                    </div>
+                                </li>
+                                <li className="dropdown">
+                                    <p className="dropdown-option"><FontAwesomeIcon icon={faGlobe} className="icon"/></p>
                                     <div className="dropdown-content">
                                         <Link to="/grow" className="link">🇳🇱</Link>
                                         <Link to="/nutrition" className="link">🇬🇧</Link>
                                     </div>
+                                </li>
+                                <li>
+                                    <Link to="/profile" className="link">
+                                        Profile
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link to="/" className="link">
@@ -96,8 +110,9 @@ const Header = ({headerCounter}) => {
                                 </li>
                                 <li>
                                     <Link to="/order" className="link">
-                                        <img className="shopping-cart" width="30" height="30" color="#F0D2A5"
-                                             src={shoppingCart} alt="shopping-cart"/>
+                                        <Badge overlap="rectangular" className="amount" badgeContent={headerCounter}>
+                                            <FontAwesomeIcon icon={faShoppingCart} className="icon-cart"/>{" "}
+                                        </Badge>
                                     </Link>
                                 </li>
                             </ul>

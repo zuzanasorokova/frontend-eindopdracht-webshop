@@ -34,8 +34,8 @@ const ProductOverview = () => {
             <main className="outer-container product-body">
                 {error && <span>Er is iets misgegaan.</span>}
                 {loading && <span>Loading...</span>}
-                <div className="inner-container product-page">
-                    <h1 className="title">SEED COLLECTION</h1>
+                <h1 className="title">SEED COLLECTION</h1>
+                <div className="inner-container">
                     <div className="product-view">
                         {products && products.map((product) => {
                             return (

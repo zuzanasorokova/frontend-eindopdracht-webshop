@@ -1,23 +1,21 @@
 import React from 'react';
 import "./Inputs.css";
-import {useForm} from "react-hook-form";
 
-const Input = ({labelClassName, htmlFor, type, id, nameRegister, inputName, value, name, onChange}) => {
-    const {register} = useForm();
+
+const Input = ({labelClassName, id, type, name, register, inputName, error }) => {
+
 
     return (
         <div className="input-container">
-            <label className={labelClassName} htmlFor={htmlFor}>
+            <label className={labelClassName} htmlFor={id}>
                 <input
                     type={type}
-                    value={value}
-                    name={name}
                     id={id}
-                    onChange={onChange}
-                    {...register(`${nameRegister}`)}
+                    {...register(name)}
                 />
                 {inputName}
             </label>
+            {error && <p> error.message </p>}
         </div>
 
     );

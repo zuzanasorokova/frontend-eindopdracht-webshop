@@ -4,10 +4,18 @@ import {AuthContext} from "../../context/AuthContext";
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import "./Login.css";
+import Input from "../../components/inputs/Input"
+import * as yup from "yup";
+import {yupResolver} from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+    username: yup.string().required("Deze veld mag niet leeg zijn!"),
+    password: yup.string().required(),
+});
 
 const Login = () => {
     const {login} = useContext(AuthContext);
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState:{errors}} = useForm({mode: "onBlur", resolver: yupResolver(schema)});
     const [error, toggleError] = useState(false);
     const source = axios.CancelToken.source();
 
@@ -39,18 +47,27 @@ const Login = () => {
 
     return (
         <>
-            <div className="outer-container login-body">
+            <div className="outer-container login-page">
                 {error && <span>Er is iets misgegaan.</span>}
-                <h1 className="login-title">LOG IN</h1>
+                <h1 className="title">LOG IN</h1>
                 <div className="inner-container">
-                    <form className="login-form" onSubmit={handleSubmit(sendData)}>
-                        <label className="label-text" htmlFor="text">Username</label>
-                        <input
-                            className="input"
+                    <form className="form" onSubmit={handleSubmit(sendData)}>
+                        <Input
+                            inputClassName="label-text"
+                            name="username"
+                            id="username"
                             type="text"
-                            id="login-username"
-                            {...register("username")}
+                            register={register}
+                            inputName="Username"
+                            error={errors.username}
                         />
+                        {/*<label className="label-text" htmlFor="username">Username</label>*/}
+                        {/*<input*/}
+                        {/*    className="input"*/}
+                        {/*    type="text"*/}
+                        {/*    id="username"*/}
+                        {/*    {...register("username")}*/}
+                        {/*/>*/}
 
                         <label className="label-text" htmlFor="signin-password">Wachtwoord</label>
                         <input

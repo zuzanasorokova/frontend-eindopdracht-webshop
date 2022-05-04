@@ -3,23 +3,6 @@
     height: 100%;
 }
 
-.product-page{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-
-}
-
-.title{
-    font-size: 75px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    color: #000000;
-
-}
-
 .product-view {
     display: flex;
     flex-direction: row;

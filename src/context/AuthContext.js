@@ -51,14 +51,17 @@ function AuthContextProvider({children}) {
                     email: userData.data.email,
                     username: userData.data.username,
                     userAuthority: userData.data.authorities.authority,
+                    customer: userData.data.customer,
                 },
                 status: "done",
             });
             console.log(userData);
             if(userData.data.authorities[0].authority === "ROLE_ADMIN"){
                 history.push("/product-form");
+            }else if(userData.data.customer === null){
+                history.push("/personinfo");
             }else{
-                history.push("/profile");
+                history.push("/profile")
             };
 
         }catch(e){
@@ -72,7 +75,7 @@ function AuthContextProvider({children}) {
         localStorage.setItem("token", jwtToken);
         getUserData(decodedJwtToken.sub, jwtToken)
         console.log("Gebruiker is ingeloged");
-        //history.push("/profile");
+        // history.push("/profile");
     }
 
     function isSignedOutFunction() {

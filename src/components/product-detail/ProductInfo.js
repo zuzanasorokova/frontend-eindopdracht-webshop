@@ -17,9 +17,9 @@ const ProductInfo = ({productKey, name, kind, description, price1, price2, price
     return (
         <div>
             <article key={productKey} className="product">
-                <div className="image-container">
-                    <img className="weed-top" src={image} alt="weed-top"/>
-                </div>
+
+                <img className="weed-top" src={image} alt="weed-top"/>
+
                 <div id="product-info-container">
                    <Link to={link} target={target} className="link"><h2>{name}</h2></Link>
                     <h3>{kind}</h3>

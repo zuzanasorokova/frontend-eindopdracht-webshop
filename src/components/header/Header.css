@@ -43,7 +43,23 @@ li{
     flex-direction: row;
     justify-content: flex-end;
     padding-bottom: 20px;
-    margin-left: 370px;
+}
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-button{
+    background-color: black;
+    color: #F0D2A5;
+    margin: 0px;
+    padding: 0px;
+}
+
+.search-bar{
+    box-sizing: border-box;
+    background-color: #F0D2A5;
 }
 
 .dropdown-content {
@@ -74,7 +90,13 @@ li{
     width: 20px;
 }
 
-.search{
-    margin-left: 10px;
+
+.nav-outer-container{
+    flex-direction: column;
+    justify-content: center;
+
 }
 
+.icon-cart{
+    color: #F0D2A5;
+}

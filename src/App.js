@@ -10,9 +10,12 @@ import Product from "./pages/product/Product";
 import ProductOverview from "./pages/product-overview/ProductOverview";
 import ProductForm from "./pages/product-form/ProductForm";
 import PersonInfoForm from "./pages/person-info-form/PersonInfoForm";
+import Footer from "./components/footer/Footer";
+
 
 
 function App() {
+
   return (
     <>
         <Header/>
@@ -30,7 +33,7 @@ function App() {
                 <Route exact path="/registration">
                     <UserRegistration/>
                 </Route>
-                <Route exact path="/personinfo">
+                <Route exact path="/personinfo/">
                     <PersonInfoForm/>
                 </Route>
                 <Route exact path="/profile">
@@ -43,6 +46,7 @@ function App() {
                     <ProductForm/>
                 </Route>
             </Switch>
+            <Footer/>
         </div>
 
 

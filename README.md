@@ -42,6 +42,26 @@ WebStorm is te downloaden via https://www.jetbrains.com/webstorm/download/#secti
 
 7. De IDE is klaar voor gebruik
 
+### NODE.JS
+Om een ideale omgeving voor development tools zoals Webpack en Eslint te creëren, moet ook Node.js geinstallerd worden. Node.js zorgt ook voor open-source libraries welke worden gebruikt doormiddel van package manager NPM.
+1. Gebruik deze link: https://nodejs.org/en/download/ om node.js globaal op het computer te installeren.
+
+2. Volg de instructies in de installer.
+
+3. Om te controlleren of node.js geinstallerd is, run in terminaal commando (nadat er een nieuwe of bestande project geopend is (volg stappen Applicatie starten)):
+
+### node -v
+
+4. Als node.js goed geinstallerd is, komt een versienummer in de terminaal te verschijnen
+
+5. Om te controlleren of NPM correct mee geinstallerd is, run in terminaal commando:
+
+### npm -v
+
+6. Als NPM goed geinstallerd is, komt weer een andere versienummer in terminaal te zien.
+
+7. De node.js en npm zijn goed geinstalleerd.
+
 ## Applicatie starten
 
 

@@ -6,4 +6,5 @@ button{
     border: 10px #38372d;
     margin-right: 20px;
     margin-left: 20px;
+    border-radius: 12px;
 }

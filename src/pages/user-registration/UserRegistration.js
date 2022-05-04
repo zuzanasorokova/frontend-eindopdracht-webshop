@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import "./UserRegistration.css"
@@ -11,9 +11,11 @@ function UserRegistration() {
     const [error, toggleError] = useState(false);
     const source = axios.CancelToken.source();
 
+
     useEffect(() => {
         return function cleanup(){
             source.cancel();
+
         }
     },[]);
 
@@ -28,7 +30,7 @@ function UserRegistration() {
             }, {
                 cancelToken: source.token,
             });
-            console.log(userData.data)
+            // console.log(userData.data)
             sendToNextPage(userData);
         }catch(e){
             console.error(e);
@@ -38,16 +40,16 @@ function UserRegistration() {
 
     function sendToNextPage(data){
         console.log(data)
-        history.push("/personinfo")
+        history.push("/login")
     }
 
     return (
         <>
-            <div className="outer-container registration-body">
+            <div className="outer-container user-register-page">
                 {error && <span>Er is iets misgegaan tijdens sturen van data.</span>}
-                <h1 className="registration-title">Registreren</h1>
+                <h1 className="title">REGISTREREN</h1>
                 <div className="inner-container">
-                    <form className="registration-form" onSubmit={handleSubmit(registerUser)}>
+                    <form className="form" onSubmit={handleSubmit(registerUser)}>
                         <label className="label-text" htmlFor="username">Username</label>
                         <input
                             className="input"
