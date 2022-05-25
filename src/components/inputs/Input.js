@@ -2,20 +2,19 @@ import React from 'react';
 import "./Inputs.css";
 
 
-const Input = ({labelClassName, id, type, name, register, inputName, error }) => {
+const Input = ({id, type, name, rules, register, inputName, inputError}) => {
 
 
     return (
         <div className="input-container">
-            <label className={labelClassName} htmlFor={id}>
-                <input
-                    type={type}
-                    id={id}
-                    {...register(name)}
-                />
-                {inputName}
-            </label>
-            {error && <p> error.message </p>}
+            <label className="input-label" htmlFor={id}> {inputName}</label>
+            <input
+                className="input-field"
+                type={type}
+                id={id}
+                {...register(name, rules)}
+            />
+            <p className="input-error">{inputError}</p>
         </div>
 
     );

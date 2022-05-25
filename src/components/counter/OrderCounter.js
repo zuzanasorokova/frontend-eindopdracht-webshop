@@ -17,9 +17,11 @@ const OrderCounter = ({counter, minusOne, plusOne, id, idBadge, idCart }) => {
                 clickHandler={minusOne}
             />
 
-            <Badge overlap="rectangular" className="amount" badgeContent={counter} id={idBadge}>
-                <FontAwesomeIcon icon={faShoppingCart} className="icon-cart" id={idCart}/>{" "}
-            </Badge>
+            <span>{counter}</span>
+
+            {/*<Badge overlap="rectangular" className="amount" badgeContent={counter} id={idBadge}>*/}
+            {/*    <FontAwesomeIcon icon={faShoppingCart} className="icon-cart" id={idCart}/>{" "}*/}
+            {/*</Badge>*/}
 
             <Button
                 id={id}

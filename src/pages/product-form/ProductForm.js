@@ -3,11 +3,23 @@ import "./ProductForm.css";
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import * as yup from "yup";
+import Input from "../../components/inputs/Input";
+import {yupResolver} from "@hookform/resolvers/yup";
 
 
+const schema = yup.object().shape({
+    name: yup.string().required("Deze veld mag niet leeg zijn!"),
+    kind: yup.string().required("Deze veld mag niet leeg zijn!"),
+    description: yup.string().required("Deze veld mag niet leeg zijn!").max(200, "Er mogen maximaal 200 karakters gebruikt worden!"),
+    priceThreeSeeds: yup.string().required("Deze veld mag niet leeg zijn!").matches(/\d+[.]\d{2}/g, "Gebruik punt ipv komma!"),
+    priceFiveSeeds: yup.string().required("Deze veld mag niet leeg zijn!").matches(/\d+[.]\d{2}/g, "Gebruik punt ipv komma!"),
+    priceTenSeeds: yup.string().required("Deze veld mag niet leeg zijn!").matches(/\d+[.]\d{2}/g, "Gebruik punt ipv komma!"),
+    vatPercentage: yup.string().required("Deze veld mag niet leeg zijn!"),
+});
 
 const ProductForm = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm({mode: "onBlur"});
+    const {register, handleSubmit, formState: {errors}} = useForm({mode: "onBlur", resolver: yupResolver(schema)});
     const [error, toggleError] = useState(false);
     const source = axios.CancelToken.source();
     const token = localStorage.getItem("token");
@@ -54,84 +66,79 @@ const ProductForm = () => {
             {error && <span>Er is iets misgegaan.</span>}
         <h1 className="title">Product toevogen</h1>
             <form onSubmit={handleSubmit(addProduct)} className="inner container product-form">
-                <label htmlFor="product-name">Product naam</label>
-                <input
-                    className="input"
-                    type="text"
-                    id="product-name"
-                    {...register("name", {required: "Deze veld mag niet leeg zijn"})}
+                <Input
+                id="product-name"
+                inputName="Product naam"
+                type="text"
+                register={register}
+                name="name"
+                inputError={errors.name?.message}
                 />
-                {errors.name && <p>{errors.name.message}</p>}
-
-                <label htmlFor="kind">Soort</label>
-                <input
-                    className="input"
-                    type="text"
+                <Input
                     id="kind"
-                    {...register("kind", {required: "Deze veld mag niet leeg zijn!"})}
+                    inputName="Soort"
+                    type="text"
+                    register={register}
+                    name="kind"
+                    inputError={errors.kind?.message}
                 />
-                {errors.kind && <p>{errors.kind.message}</p>}
 
-                <label htmlFor="description">Omschrijving</label>
+                <label htmlFor="description" className="textarea-label">Omschrijving</label>
                 <textarea
                     className="input"
                     rows="4"
                     cols="40"
-                    type="text"
                     id="description"
-                    {...register("description", {required: "Deze veld mag niet leeg zijn!", maxLength: {value: 200, message: "Er mogen maximaal 200 karakters gebruikt worden!"}})}
+                    {...register("description")}
                 />
-                {errors.description && <p>{errors.description.message}</p>}
+                <p className="input-error">{errors.description?.message}</p>
 
-                <label htmlFor="three">Prijs voor 3 zaden</label>
-                <p className="melding">Gebruik geen koma</p>
-                <input
-                    className="input"
-                    type="text"
+                <Input
                     id="three"
-                    {...register("priceThreeSeeds", {required: "Deze veld mag niet leeg zijn!"})}
-                />
-                {errors.priceThreeSeeds && <p>{errors.priceThreeSeeds.message}</p>}
-
-                <label htmlFor="five">Prijs voor 5 zaden</label>
-                <p className="melding">Gebruik geen koma</p>
-                    <input
-                        className="input"
-                        type="text"
-                        id="five"
-                        {...register("priceFiveSeeds", {required: "Deze veld mag niet leeg zijn!"})}
-                    />
-                {errors.priceFiveSeeds && <p>{errors.priceFiveSeeds.message}</p>}
-
-                <label htmlFor="ten">Prijs voor 10 zaden</label>
-                <p className="melding">Gebruik geen koma</p>
-                    <input
-                        className="input"
-                        type="text"
-                        id="ten"
-                        {...register("priceTenSeeds", {required: "Deze veld mag niet leeg zijn!"})}
-                    />
-                {errors.priceTenSeeds && <p>{errors.priceTenSeeds.message}</p>}
-
-                <label htmlFor="vat">BTW</label>
-                <input
-                    className="input"
+                    inputName="Prijs voor 3 zaden"
                     type="text"
+                    register={register}
+                    name="priceThreeSeeds"
+                    inputError={errors.priceThreeSeeds?.message}
+                />
+
+                <Input
+                    id="five"
+                    inputName="Prijs voor 5 zaden"
+                    type="text"
+                    register={register}
+                    name="priceFiveSeeds"
+                    inputError={errors.priceFiveSeeds?.message}
+                />
+
+                <Input
+                    id="ten"
+                    inputName="Prijs voor 10 zaden"
+                    type="text"
+                    register={register}
+                    name="priceTenSeeds"
+                    inputError={errors.priceTenSeeds?.message}
+                />
+
+                <Input
                     id="vat"
-                    {...register("vat", {required: "Deze veld mag niet leeg zijn!"})}
+                    inputName="BTW"
+                    type="text"
+                    register={register}
+                    name="vatPercentage"
+                    inputError={errors.vatPercentage?.message}
                 />
-                {errors.vat && <p>{errors.vat.message}</p>}
 
-                <label htmlFor="photo">Foto</label>
-                <input
-                    className="input"
-                    type="file"
+                <Input
                     id="photo"
-                    {...register("photo")}
+                    inputName="Foto"
+                    type="file"
+                    register={register}
+                    name="photo"
+                    inputError={errors.photo?.message}
                 />
 
-
-                    <button type="submit">Product toevogen</button>
+                <button type="submit">Product toevogen</button>
 
             </form>
         </div>

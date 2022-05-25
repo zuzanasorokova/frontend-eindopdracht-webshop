@@ -10,7 +10,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
     username: yup.string().required("Deze veld mag niet leeg zijn!"),
-    password: yup.string().required(),
+    password: yup.string().required("Deze veld mag niet leeg zijn!"),
 });
 
 const Login = () => {
@@ -53,28 +53,20 @@ const Login = () => {
                 <div className="inner-container">
                     <form className="form" onSubmit={handleSubmit(sendData)}>
                         <Input
-                            inputClassName="label-text"
                             name="username"
                             id="username"
                             type="text"
                             register={register}
                             inputName="Username"
-                            error={errors.username}
+                            inputError= {errors.username?.message}
                         />
-                        {/*<label className="label-text" htmlFor="username">Username</label>*/}
-                        {/*<input*/}
-                        {/*    className="input"*/}
-                        {/*    type="text"*/}
-                        {/*    id="username"*/}
-                        {/*    {...register("username")}*/}
-                        {/*/>*/}
-
-                        <label className="label-text" htmlFor="signin-password">Wachtwoord</label>
-                        <input
-                            className="input"
+                        <Input
+                            name="password"
+                            id="password"
                             type="password"
-                            id="signin-password"
-                            {...register("password")}
+                            register={register}
+                            inputName="Password"
+                            inputError= {errors.password?.message}
                         />
 
                         <button type="submit">Inloggen</button>

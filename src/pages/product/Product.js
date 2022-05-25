@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import OrderCounter from "../../components/counter/OrderCounter";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
@@ -6,6 +6,9 @@ import Input from "../../components/inputs/Input";
 import Button from "../../components/buttons/Button";
 import "./Product.css";
 import weed from "../../assets/Stawbarry Shake Klein.png";
+import PackageOptions from "../../components/package-options/PackageOptions";
+import {ShoppingCartContext} from "../../context/ShoppingCartContext";
+import {useForm} from "react-hook-form";
 
 const Product = () => {
     const [product, setProduct] = useState("");
@@ -13,6 +16,9 @@ const Product = () => {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false)
     const {productId} = useParams();
+    const {addItemToCart} = useContext(ShoppingCartContext);
+    const {handleSubmit} = useForm();
+
 
     useEffect(() => {
     getProductData()
@@ -30,6 +36,10 @@ const Product = () => {
             console.error(e);
         }
         toggleLoading(false);
+    }
+
+    function submitHandler() {
+        addItemToCart(product)
     }
     return (
         <>
@@ -49,50 +59,47 @@ const Product = () => {
                             <p className="product-description">
                                 {product.description}
                             </p>
-                            <div className="package-container" id="package-container">
-                                {/*<input*/}
-                                {/*    htmlFor="three"*/}
-                                {/*    name="seeds-package"*/}
-                                {/*    type="radio"*/}
-                                {/*    value="package3"*/}
-                                {/*    id="three"*/}
-                                {/*    nameRegister="threeSeeds"*/}
-                                {/*    inputName={`3st / ${product.priceThreeSeeds}€`}*/}
+                            <form onSubmit={handleSubmit(submitHandler)}>
+                                <PackageOptions product={product}/>
+                                <Button
+                                    className="button"
+                                    disabled={false}
+                                    type="submit"
+                                    buttonName="Tovoegen"
+                                />
+                            </form>
 
-                                {/*/>*/}
-                                {/*<Input*/}
-                                {/*    htmlFor="six"*/}
-                                {/*    name="seeds-package"*/}
-                                {/*    type="radio"*/}
-                                {/*    value="seeds"*/}
-                                {/*    id="six"*/}
-                                {/*    nameRegister="sixSeeds"*/}
-                                {/*    inputName={`5st / ${product.priceFiveSeeds}€`}*/}
-                                {/*/>*/}
-                                {/*<Input*/}
-                                {/*    htmlFor="ten"*/}
-                                {/*    name="seeds-package"*/}
-                                {/*    type="radio"*/}
-                                {/*    value="seeds"*/}
-                                {/*    id="ten"*/}
-                                {/*    nameRegister="tenSeeds"*/}
-                                {/*    inputName={`10st / ${product.priceTenSeeds}€`}*/}
-                                {/*/>*/}
-                            </div>
-                            <OrderCounter
-                                id="order-counter"
-                                idCart="order-cart"
-                                counter={stateCounter}
-                                minusOne={() => setStateCounter(stateCounter -1)}
-                                plusOne={() => setStateCounter(stateCounter +1)}
-                            />
-                            <Button
-                                id="product-button"
-                                className="button"
-                                disabled={stateCounter === 0}
-                                type="button"
-                                buttonName="Bestel"
-                            />
+                            {/*<div className="package-container" id="package-container">*/}
+                            {/*    <Input*/}
+                            {/*        htmlFor="three"*/}
+                            {/*        name="seeds-package"*/}
+                            {/*        type="radio"*/}
+                            {/*        value="package3"*/}
+                            {/*        id="three"*/}
+                            {/*        nameRegister="threeSeeds"*/}
+                            {/*        inputName={`3st / ${product.priceThreeSeeds}€`}*/}
+
+                            {/*    />*/}
+                            {/*    <Input*/}
+                            {/*        htmlFor="five"*/}
+                            {/*        name="seeds-package"*/}
+                            {/*        type="radio"*/}
+                            {/*        value="seeds"*/}
+                            {/*        id="five"*/}
+                            {/*        nameRegister="fiveSeeds"*/}
+                            {/*        inputName={`5st / ${product.priceFiveSeeds}€`}*/}
+                            {/*    />*/}
+                            {/*    <Input*/}
+                            {/*        htmlFor="ten"*/}
+                            {/*        name="seeds-package"*/}
+                            {/*        type="radio"*/}
+                            {/*        value="seeds"*/}
+                            {/*        id="ten"*/}
+                            {/*        nameRegister="tenSeeds"*/}
+                            {/*        inputName={`10st / ${product.priceTenSeeds}€`}*/}
+                            {/*    />*/}
+                            {/*</div>*/}
+
                     </div>
 
 

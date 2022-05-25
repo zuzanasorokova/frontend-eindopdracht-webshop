@@ -9,7 +9,7 @@ const Profile = () => {
 
     return (
         <div className="outer-container profile-page">
-            {user &&
+            {Object.keys(user).length > 0 &&
                 <div className="inner-container">
                     <h1 className="title">WELKOM {user.customer.firstname}!</h1>
                     <article className="detail-container">

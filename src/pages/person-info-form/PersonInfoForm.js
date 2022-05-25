@@ -1,13 +1,22 @@
 import React, {useContext, useEffect, useState} from 'react';
 import "./PersonInfoForm.css";
 import {useForm} from "react-hook-form";
-import {useHistory, useParams} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext";
+import * as yup from "yup";
+import Input from "../../components/inputs/Input";
+import {yupResolver} from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+    firstname: yup.string().required("Deze veld mag niet leeg zijn!"),
+    lastname: yup.string().required("Deze veld mag niet leeg zijn!"),
+    address: yup.string().required("Deze veld mag niet leeg zijn!"),
+});
 
 const PersonInfoForm = () => {
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm({mode: "onBlur", resolver: yupResolver(schema)});
     const [error, toggleError] = useState(false);
     const history = useHistory();
     const source = axios.CancelToken.source();
@@ -50,27 +59,33 @@ const PersonInfoForm = () => {
                 <h1 className="title">GEGEVENS</h1>
                 <div className="inner-container">
                     <form className="form" onSubmit={handleSubmit(registerCustomer)}>
-                        <label className="label-text" htmlFor="firstname">Naam</label>
-                        <input
-                            className="input"
-                            type="text"
+                        <Input
+                            name="firstname"
                             id="firstname"
-                            {...register("firstname")}
-                        />
-                        <label className="label-text" htmlFor="lastname">Achternaam</label>
-                        <input
-                            className="input"
                             type="text"
+                            register={register}
+                            inputName="Naam"
+                            inputError= {errors.firstname?.message}
+                        />
+
+                        <Input
+                            name="lastname"
                             id="lastname"
-                            {...register("lastname")}
-                        />
-                        <label className="label-text" htmlFor="address">Adres</label>
-                        <input
-                            className="input"
                             type="text"
-                            id="address"
-                            {...register("address")}
+                            register={register}
+                            inputName="Achternaam"
+                            inputError= {errors.lastname?.message}
                         />
+
+                        <Input
+                            name="address"
+                            id="address"
+                            type="text"
+                            register={register}
+                            inputName="Adres"
+                            inputError= {errors.address?.message}
+                        />
+
                         <button type="submit">Register</button>
                     </form>
                 </div>

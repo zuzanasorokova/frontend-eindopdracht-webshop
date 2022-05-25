@@ -1,0 +1,25 @@
+.input-field {
+    background-color: #F0D2A5;
+    font-size: 25px;
+    width: 300px;
+    margin: 10px 20px 0px 20px;
+    border-radius: 10px;
+}
+
+.input-label {
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.input-error {
+    color: red;
+    margin-bottom: 10px;
+}

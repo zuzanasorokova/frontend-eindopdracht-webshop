@@ -11,6 +11,7 @@ import ProductOverview from "./pages/product-overview/ProductOverview";
 import ProductForm from "./pages/product-form/ProductForm";
 import PersonInfoForm from "./pages/person-info-form/PersonInfoForm";
 import Footer from "./components/footer/Footer";
+import Order from "./pages/order/Order";
 
 
 
@@ -36,7 +37,7 @@ function App() {
                 <Route exact path="/personinfo/">
                     <PersonInfoForm/>
                 </Route>
-                <Route exact path="/profile">
+                <Route path="/profile">
                     <Profile/>
                 </Route>
                 <Route exact path="/login">
@@ -44,6 +45,9 @@ function App() {
                 </Route>
                 <Route exact path="/product-form">
                     <ProductForm/>
+                </Route>
+                <Route>
+                    <Order/>
                 </Route>
             </Switch>
             <Footer/>

@@ -1,7 +1,6 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 import "./Header.css";
-import shoppingCart from "../../assets/shopping-cart.png"
 import {AuthContext} from "../../context/AuthContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGlobe} from "@fortawesome/free-solid-svg-icons";

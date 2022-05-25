@@ -9,7 +9,7 @@ export const AuthContext = createContext({});
 function AuthContextProvider({children}) {
     const [auth, toggleAuth] = useState({
         isAuth: false,
-        user: null,
+        user: {},
         status: "pending",
     });
 

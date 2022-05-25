@@ -5,13 +5,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContextProvider from "./context/AuthContext";
+import ShoppingCartProvider from "./context/ShoppingCartContext";
+
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
+            <ShoppingCartProvider>
             <AuthContextProvider>
                 <App/>
             </AuthContextProvider>
+            </ShoppingCartProvider>
         </Router>
     </React.StrictMode>,
     document.getElementById('root')

@@ -1,12 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useHistory, useParams} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import "./UserRegistration.css"
+import * as yup from "yup";
+import {yupResolver} from "@hookform/resolvers/yup";
+import Input from "../../components/inputs/Input";
+
+
+const schema = yup.object().shape({
+    username: yup.string().required("Deze veld mag niet leeg zijn!"),
+    email: yup.string().email("Dit is niet geldige e-mail adres.").required("Deze veld mag niet leeg zijn!"),
+    password: yup.string().required("Deze veld mag niet leeg zijn!"),
+});
 
 
 function UserRegistration() {
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState:{errors} } = useForm({mode: "onBlur", resolver: yupResolver(schema)});
     const history = useHistory();
     const [error, toggleError] = useState(false);
     const source = axios.CancelToken.source();
@@ -50,26 +60,29 @@ function UserRegistration() {
                 <h1 className="title">REGISTREREN</h1>
                 <div className="inner-container">
                     <form className="form" onSubmit={handleSubmit(registerUser)}>
-                        <label className="label-text" htmlFor="username">Username</label>
-                        <input
-                            className="input"
-                            type="text"
+                        <Input
+                            name="username"
                             id="username"
-                            {...register("username")}
+                            type="text"
+                            register={register}
+                            inputName="Username"
+                            inputError= {errors.username?.message}
                         />
-                        <label className="label-text" htmlFor="email">E-mail</label>
-                        <input
-                            className="input"
-                            type="email"
+                        <Input
+                            name="email"
                             id="email"
-                            {...register("email")}
+                            type="text"
+                            register={register}
+                            inputName="E-mail"
+                            inputError= {errors.email?.message}
                         />
-                        <label className="label-text" htmlFor="password">Wachtwoord</label>
-                        <input
-                            className="input"
-                            type="password"
+                        <Input
+                            name="password"
                             id="password"
-                            {...register("password")}
+                            type="password"
+                            register={register}
+                            inputName="Wachtwoord"
+                            inputError= {errors.password?.message}
                         />
                         <button type="submit">Register</button>
                         <p>Heb je al een account?</p>

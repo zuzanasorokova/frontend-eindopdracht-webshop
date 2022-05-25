@@ -1,13 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "./ProductOverview.css"
 import axios from "axios";
 import ProductInfo from "../../components/product-detail/ProductInfo";
+import {ShoppingCartContext} from "../../context/ShoppingCartContext";
 
 const ProductOverview = () => {
 
-    const [loading, toggleLoading] = useState();
-    const [error, toggleError] = useState();
+    // const { products } = useContext(ShoppingCartContext);
+    // console.log(products);
+
+    const [loading, toggleLoading] = useState(false);
+    const [error, toggleError] = useState(false);
     const [products, setProducts] = useState(null);
+    const { addItemToCart } = useContext(ShoppingCartContext);
 
     useEffect(() => {
 
@@ -29,6 +34,7 @@ const ProductOverview = () => {
 
     }, []);
 
+
     return (
         <>
             <main className="outer-container product-body">
@@ -41,13 +47,15 @@ const ProductOverview = () => {
                             return (
                                 <ProductInfo
                                 key={product.id}
-                                name={product.name}
-                                kind={product.kind}
-                                description={product.description}
-                                price1={product.priceThreeSeeds}
-                                price2={product.priceFiveSeeds}
-                                price3={product.priceTenSeeds}
-                                link={`/seeds/:${product.id}`}
+                                product={product}
+                                addItemToCart={addItemToCart}
+                                // name={product.name}
+                                // kind={product.kind}
+                                // description={product.description}
+                                // price1={product.priceThreeSeeds}
+                                // price2={product.priceFiveSeeds}
+                                // price3={product.priceTenSeeds}
+                                // link={`/seeds/:${product.id}`}
                                 />
                             )
                         })}
